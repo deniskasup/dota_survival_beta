@@ -4,94 +4,59 @@ import { BaseAbility, registerAbility } from "../../../lib/dota_ts_adapter";
 export class axe_counter_helix_autocast extends BaseAbility {
     particle?: ParticleID;
 
-    GetCooldown() {
-        let cooldown = this.GetSpecialValueFor("cooldown");
-        if (IsServer()) {
-            const talent = this.GetCaster().FindAbilityByName("special_bonus_unique_meepo_3");
-            if (talent) {
-                cooldown -= talent.GetSpecialValueFor("value");
-            }
-        }
-
-        return cooldown;
+    CastAbility() {
+        return false
     }
 
     OnAbilityPhaseStart() {
         if (IsServer()) {
-            this.GetCaster().EmitSound("Hero_Meepo.Earthbind.Cast");
+            this.GetCaster().EmitSound("Hero_Axe.CounterHelix");
         }
 
         return true;
     }
 
     OnAbilityPhaseInterrupted() {
-        this.GetCaster().StopSound("Hero_Meepo.Earthbind.Cast");
+        this.GetCaster().StopSound("Hero_Axe.CounterHelix");
     }
 
     OnSpellStart() {
         const caster = this.GetCaster();
-        const point = this.GetCursorPosition();
-        const projectileSpeed = this.GetSpecialValueFor("speed");
-
-        const direction = ((point - caster.GetAbsOrigin()) as Vector).Normalized();
-        direction.z = 0;
-        const distance = ((point - caster.GetAbsOrigin()) as Vector).Length();
-
         const radius = this.GetSpecialValueFor("radius");
-        this.particle = ParticleManager.CreateParticle(
-            "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
-            ParticleAttachment.CUSTOMORIGIN,
-            caster,
-        );
+        const damage = this.GetSpecialValueFor('damage');
 
-        ParticleManager.SetParticleControl(this.particle, 0, caster.GetAbsOrigin());
-        ParticleManager.SetParticleControl(this.particle, 1, point);
-        ParticleManager.SetParticleControl(this.particle, 2, Vector(projectileSpeed, 0, 0));
-
-        ProjectileManager.CreateLinearProjectile({
-            Ability: this,
-            EffectName: "",
-            vSpawnOrigin: caster.GetAbsOrigin(),
-            fDistance: distance,
-            fStartRadius: radius,
-            fEndRadius: radius,
-            Source: caster,
-            bHasFrontalCone: false,
-            iUnitTargetTeam: UnitTargetTeam.NONE,
-            iUnitTargetFlags: UnitTargetFlags.NONE,
-            iUnitTargetType: UnitTargetType.NONE,
-            vVelocity: (direction * projectileSpeed) as Vector,
-            bProvidesVision: true,
-            iVisionRadius: radius,
-            iVisionTeamNumber: caster.GetTeamNumber(),
-        });
-    }
-
-    OnProjectileHit(_target: CDOTA_BaseNPC, location: Vector) {
-        const caster = this.GetCaster();
-        const duration = this.GetSpecialValueFor("duration");
-        const radius = this.GetSpecialValueFor("radius");
-
-        const units = FindUnitsInRadius(
+        const targets = FindUnitsInRadius(
             caster.GetTeamNumber(),
-            location,
+            caster.GetAbsOrigin(),
             undefined,
             radius,
             UnitTargetTeam.ENEMY,
-            UnitTargetType.BASIC | UnitTargetType.HERO,
+            UnitTargetType.BASIC,
             UnitTargetFlags.NONE,
-            0,
-            false,
-        );
+            FindOrder.ANY,
+            false
+        )
 
-        for (const unit of units) {
-            unit.AddNewModifier(caster, this, "modifier_meepo_earthbind", { duration });
-            unit.EmitSound("Hero_Meepo.Earthbind.Target");
-        }
+        targets.forEach(target => {
+            const damageTable = {
+                victim: target,
+                attacker: caster,
+                damage,
+                damage_type: DamageTypes.PURE,
+                ability: this,
+            }
 
-        ParticleManager.DestroyParticle(this.particle!, false);
-        ParticleManager.ReleaseParticleIndex(this.particle!);
+            ApplyDamage(damageTable)
+        })
 
-        return true;
+    }
+
+
+    OnAbilityUpgrade() {
+        const cooldown = this.GetSpecialValueFor("AbilityCooldown")
+        Timers.CreateTimer(cooldown, () => {
+            this.GetCaster().CastAbilityNoTarget(this, this.GetCaster().GetEntityIndex())
+            return cooldown
+        });
     }
 }

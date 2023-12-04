@@ -29,22 +29,22 @@ export class GameMode {
         ListenToGameEvent("npc_spawned", event => this.OnNpcSpawned(event), undefined);
 
         // Register event listeners for events from the UI
-        CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
-            print(`Player ${data.PlayerID} has closed their UI panel.`);
-
-            // Respond by sending back an example event
-            const player = PlayerResource.GetPlayer(data.PlayerID)!;
-            CustomGameEventManager.Send_ServerToPlayer(player, "example_event", {
-                myNumber: 42,
-                myBoolean: true,
-                myString: "Hello!",
-                myArrayOfNumbers: [1.414, 2.718, 3.142]
-            });
-
-            // Also apply the panic modifier to the sending player's hero
-            const hero = player.GetAssignedHero();
-            hero.AddNewModifier(hero, undefined, modifier_panic.name, { duration: 5 });
-        });
+        // CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
+        //     print(`Player ${data.PlayerID} has closed their UI panel.`);
+        //
+        //     // Respond by sending back an example event
+        //     const player = PlayerResource.GetPlayer(data.PlayerID)!;
+        //     CustomGameEventManager.Send_ServerToPlayer(player, "example_event", {
+        //         myNumber: 42,
+        //         myBoolean: true,
+        //         myString: "Hello!",
+        //         myArrayOfNumbers: [1.414, 2.718, 3.142]
+        //     });
+        //
+        //     // Also apply the panic modifier to the sending player's hero
+        //     const hero = player.GetAssignedHero();
+        //     hero.AddNewModifier(hero, undefined, modifier_panic.name, { duration: 5 });
+        // });
     }
 
     private configure(): void {
