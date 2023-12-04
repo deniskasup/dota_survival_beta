@@ -32,7 +32,7 @@
             "Red"			"1"
         }
         "Ability1"		"meepo_earthbind_ts_example"
-        "Ability2"		""
+        "Ability2"		"axe_counter_helix_autocast"
         "Ability3"		""
         "Ability4"		""
         "Ability5"		""
