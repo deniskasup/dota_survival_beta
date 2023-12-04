@@ -1,7 +1,7 @@
 import { reloadable } from "./lib/tstl-utils";
 import { modifier_panic } from "./modifiers/modifier_panic";
 
-const heroSelectionTime = 20;
+const heroSelectionTime = 60;
 
 declare global {
     interface CDOTAGameRules {
@@ -49,21 +49,15 @@ export class GameMode {
 
     private configure(): void {
         GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
+        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 0);
 
         GameRules.SetShowcaseTime(0);
+        GameRules.SetStrategyTime(0);
         GameRules.SetHeroSelectionTime(heroSelectionTime);
     }
 
     public OnStateChange(): void {
         const state = GameRules.State_Get();
-
-        // Add 4 bots to lobby in tools
-        if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
-            for (let i = 0; i < 4; i++) {
-                Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
-            }
-        }
 
         if (state === GameState.CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
@@ -94,14 +88,6 @@ export class GameMode {
     }
 
     private OnNpcSpawned(event: NpcSpawnedEvent) {
-        // After a hero unit spawns, apply modifier_panic for 8 seconds
-        const unit = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
-        // Give all real heroes (not illusions) the meepo_earthbind_ts_example spell
-        if (unit.IsRealHero()) {
-            if (!unit.HasAbility("meepo_earthbind_ts_example")) {
-                // Add lua ability to the unit
-                unit.AddAbility("meepo_earthbind_ts_example");
-            }
-        }
+
     }
 }
