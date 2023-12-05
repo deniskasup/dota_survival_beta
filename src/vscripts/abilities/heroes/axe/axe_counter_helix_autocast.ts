@@ -1,4 +1,4 @@
-import { BaseAbility, registerAbility } from "../../../lib/dota_ts_adapter";
+import {BaseAbility, registerAbility} from "../../../lib/dota_ts_adapter";
 
 @registerAbility()
 export class axe_counter_helix_autocast extends BaseAbility {
@@ -30,10 +30,10 @@ export class axe_counter_helix_autocast extends BaseAbility {
             caster.GetAbsOrigin(),
             undefined,
             radius,
-            UnitTargetTeam.ENEMY,
-            UnitTargetType.BASIC,
-            UnitTargetFlags.NONE,
-            FindOrder.ANY,
+            DOTA_UNIT_TARGET_TEAM.DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_TYPE.DOTA_UNIT_TARGET_BASIC,
+            DOTA_UNIT_TARGET_FLAGS.DOTA_UNIT_TARGET_FLAG_NONE,
+            FindOrder.FIND_ANY_ORDER,
             false
         )
 
@@ -42,7 +42,7 @@ export class axe_counter_helix_autocast extends BaseAbility {
                 victim: target,
                 attacker: caster,
                 damage,
-                damage_type: DamageTypes.PURE,
+                damage_type: DAMAGE_TYPES.DAMAGE_TYPE_PURE,
                 ability: this,
             }
 
@@ -51,12 +51,10 @@ export class axe_counter_helix_autocast extends BaseAbility {
 
     }
 
-
     OnAbilityUpgrade() {
-        const cooldown = this.GetSpecialValueFor("AbilityCooldown")
-        Timers.CreateTimer(cooldown, () => {
+        Timers.CreateTimer(this.GetCooldownTime(), () => {
             this.GetCaster().CastAbilityNoTarget(this, this.GetCaster().GetEntityIndex())
-            return cooldown
+            return this.GetCooldownTime()
         });
     }
 }
