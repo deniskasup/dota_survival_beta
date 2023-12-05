@@ -52,9 +52,10 @@ export class axe_counter_helix_autocast extends BaseAbility {
     }
 
     OnAbilityUpgrade() {
-        Timers.CreateTimer(this.GetCooldownTime(), () => {
+        const cooldown = this.GetSpecialValueFor("AbilityCooldown")
+        Timers.CreateTimer(cooldown, () => {
             this.GetCaster().CastAbilityNoTarget(this, this.GetCaster().GetEntityIndex())
-            return this.GetCooldownTime()
+            return cooldown
         });
     }
 }
