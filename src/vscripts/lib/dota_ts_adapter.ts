@@ -36,7 +36,7 @@ export const registerAbility = (name?: string) => (ability: new () => CDOTA_Abil
         // @ts-ignore
         ability.name = name;
     } if (context.name) {
-        name = context.name;   
+        name = context.name;
     }else {
         throw "Unable to determine name of this ability class!";
     }
@@ -61,7 +61,7 @@ export const registerModifier = (name?: string) => (modifier: new () => CDOTA_Mo
         // @ts-ignore
         modifier.name = name;
     } if (context.name) {
-        name = context.name;   
+        name = context.name;
     }else {
         throw "Unable to determine name of this modifier class!";
     }
@@ -81,17 +81,17 @@ export const registerModifier = (name?: string) => (modifier: new () => CDOTA_Mo
         }
     };
 
-    let type = LuaModifierMotionType.NONE;
+    let type = LuaModifierType.LUA_MODIFIER_MOTION_NONE;
     let base = (modifier as any).____super;
     while (base) {
         if (base === BaseModifierMotionBoth) {
-            type = LuaModifierMotionType.BOTH;
+            type = LuaModifierType.LUA_MODIFIER_MOTION_BOTH;
             break;
         } else if (base === BaseModifierMotionHorizontal) {
-            type = LuaModifierMotionType.HORIZONTAL;
+            type = LuaModifierType.LUA_MODIFIER_MOTION_HORIZONTAL;
             break;
         } else if (base === BaseModifierMotionVertical) {
-            type = LuaModifierMotionType.VERTICAL;
+            type = LuaModifierType.LUA_MODIFIER_MOTION_VERTICAL;
             break;
         }
 

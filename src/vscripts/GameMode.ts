@@ -1,5 +1,4 @@
 import { reloadable } from "./lib/tstl-utils";
-import { modifier_panic } from "./modifiers/modifier_panic";
 
 const heroSelectionTime = 60;
 
@@ -48,8 +47,8 @@ export class GameMode {
     }
 
     private configure(): void {
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 0);
+        GameRules.SetCustomGameTeamMaxPlayers(DOTATeam_t.DOTA_TEAM_GOODGUYS, 3);
+        GameRules.SetCustomGameTeamMaxPlayers(DOTATeam_t.DOTA_TEAM_BADGUYS, 0);
 
         GameRules.SetShowcaseTime(0);
         GameRules.SetStrategyTime(0);
@@ -59,7 +58,7 @@ export class GameMode {
     public OnStateChange(): void {
         const state = GameRules.State_Get();
 
-        if (state === GameState.CUSTOM_GAME_SETUP) {
+        if (state === DOTA_GameState.DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
             if (IsInToolsMode()) {
                 Timers.CreateTimer(3, () => {
@@ -69,7 +68,7 @@ export class GameMode {
         }
 
         // Start game once pregame hits
-        if (state === GameState.PRE_GAME) {
+        if (state === DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) {
             Timers.CreateTimer(0.2, () => this.StartGame());
         }
     }
