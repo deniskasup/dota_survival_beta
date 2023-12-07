@@ -1,0 +1,2413 @@
+"DOTAAbilities"
+{
+	"Version"		"1"
+	
+	
+	//疗伤莲花
+	"item_famango"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"	
+		"Model"							"models/props_gameplay/fountain_of_life/fountain_of_life_consumable.vmdl"
+		"AbilityTextureName"    		"item_famango"
+		
+		"AbilityCooldown"				"0"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"DOTA_Item.Mango.Activate"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"item_famango"
+			}
+			"SpendCharge"
+			{}
+		}
+		
+	}
+	//大莲花
+	"item_recipe_great_famango"
+	{
+		"ItemRequirements"
+		{
+			"01"						""
+		}
+	}
+	//骑士剑
+	"item_paladin_sword"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		
+		"AbilityValues"
+		{
+			"bonus_damage"			"50"
+			"bonus_lifesteal"			"20"
+			"bonus_spell_lifesteal"		"15"
+			"bonus_amp"				"15"
+		}
+	}
+	//骑士剑 卷轴
+	"item_recipe_paladin_sword"
+	{
+		"ID"							"20027"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"300"
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_paladin_sword"
+		"ItemRequirements"
+		{
+			"01"						"item_lifesteal;item_voodoo_mask;item_mithril_hammer;"
+		}
+	}
+	//分身斧
+	"item_manta"
+	{
+		"ItemPurchasable"				"0"
+	}
+	"item_recipe_manta"
+	{
+		"ItemPurchasable"				"0"
+	}
+	
+	//先锋盾 卷轴
+	"item_recipe_vanguard"
+	{
+		"ItemCost"						"100"
+		"ItemRequirements"
+		{
+			"01"						"item_voodoo_mask;item_vitality_booster"
+		}
+	}
+	//大根 卷轴
+	"item_recipe_dagon"
+	{
+		"ItemCost"						"1850"	
+		"ItemRequirements"
+		{
+			"01"						"item_diadem;"
+		}
+	}
+	//大根 
+	"item_dagon"
+	{
+		"AbilityValues"
+		{
+			"dagon_spell_lifesteal"				"0"
+			"passive_spell_lifesteal"			"0"
+		}
+	}
+	"item_dagon_2"
+	{
+		"AbilityValues"
+		{
+			"dagon_spell_lifesteal"				"0"
+			"passive_spell_lifesteal"			"0"
+		}
+	}
+	"item_dagon_3"
+	{
+		"AbilityValues"
+		{
+			"dagon_spell_lifesteal"				"0"
+			"passive_spell_lifesteal"			"0"
+		}
+	}
+	"item_dagon_4"
+	{
+		"AbilityValues"
+		{
+			"dagon_spell_lifesteal"				"0"
+			"passive_spell_lifesteal"			"0"
+		}
+	}
+	"item_dagon_5"
+	{
+		"AbilityValues"
+		{
+			"dagon_spell_lifesteal"				"0"
+			"passive_spell_lifesteal"			"0"
+		}
+	}
+	
+	
+	
+	//刷新
+	"item_refresher"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"				"100"
+		"AbilityValues"
+		{
+			"bonus_health_regen"	"30"
+		}
+	}
+	//阿哈利姆 卷轴
+	"item_recipe_ultimate_scepter_2"
+	{
+		"ItemCost"						"200"
+	}
+	//小电锤
+	"item_maelstrom"
+	{
+		"AbilityValues"
+		{
+				"chain_strikes"			"12"
+		}
+	}
+	//微光
+	"item_glimmer_cape"
+	{
+		"ItemPurchasable"				"0"
+	}
+	//相位
+	"item_phase_boots"
+	{
+		"AbilityCooldown"				"30"
+	}
+	//BKB
+	"item_black_king_bar"
+	{
+		"BaseClass"     				"item_datadriven"
+		"AbilityTextureName"    		"item_black_king_bar"
+		"AbilityCooldown"				"100"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"bkb"
+			}
+			"FireSound"
+			{
+				"EffectName"    "DOTA_Item.BlackKingBar.Activate"
+				"Target"        "CASTER"
+			}
+		}
+		
+		"Modifiers"
+        {
+			"modifier_item_black_king_bar_passive"
+			{
+				"Passive"                		"1"
+				"IsHidden"						"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"      "10"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"        "24"
+				}
+			}
+			
+        }
+		
+		"AbilityValues"
+		{
+			"duration"				"5 3"
+		}
+	}
+	//恶魔刀锋
+	"item_demon_edge"
+	{
+		"ID"							"51"
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"item_demon_edge"
+		"ItemCost"						"2000"
+		"ItemPermanent"					"1"
+		"Modifiers"
+		{
+			"modifier_item_demon_edge_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnAttackLanded"
+				{
+					"CleaveAttack"
+					{
+						"CleavePercent"					  "40"
+						"CleaveRadius"                "700"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
+					}
+				}
+				 "Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"      "40"
+				}
+			}
+		}
+	}
+	
+	//小电锤
+	"item_maelstrom"
+	{
+		"AbilitySpecial"
+		{
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chain_strikes"			"12"
+			}
+		}
+	}
+	//小电锤 卷轴
+	"item_recipe_maelstrom"
+	{
+		"ItemCost"						"900"	
+		"ItemRequirements"
+		{
+			"01"						"item_javelin"
+		}
+	}
+	//雷神之锤 卷轴
+	"item_recipe_mjollnir"
+	{
+		"ItemCost"						"200"
+	}
+	//刃甲
+	"item_blade_mail"
+	{
+		"AbilityCooldown"				"33"
+		"AbilityValues"
+		{
+			"bonus_damage"			"80"
+			"bonus_armor"			"15"
+			"bonus_intellect"		"0"
+			"duration"				"4"
+		}
+	}
+	//刃甲卷轴
+	"item_recipe_blade_mail"
+	{
+		"ItemCost"						"200"	
+		"ItemRequirements"
+		{
+			"01"						"item_platemail;item_relic"
+		}
+	}
+	//莲花
+	"item_lotus_orb"
+	{
+		"AbilityCooldown"				"30"
+	}
+	//三叉戟
+	"item_trident"
+	{
+		"ID"							"369"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_trident"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"item_trident"
+
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"IsObsolete"					"0"
+		"ItemSellable"					"1"
+		
+		"AbilityValues"
+		{	
+			"bonus_strength"		"30"
+			"bonus_agility"			"30"
+			"bonus_intellect"		"30"
+			"status_resistance"		"25"
+			"hp_regen_amp"			"30"
+			"bonus_attack_speed"	"30"
+			"movement_speed_percent_bonus"	"10"
+			"spell_amp"				"20"
+			"mana_regen_multiplier"	"50"
+			"spell_lifesteal_amp"	"30"
+			"magic_damage_attack"	"0"
+		}
+		
+	}
+	//三叉戟卷轴
+	"item_recipe_trident"
+	{
+		"ItemCost"						"6000"
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		"IsObsolete"					"0"
+		
+		"ItemRequirements"
+		{
+			"01"						""
+			"02"						"item_kaya_and_sange;"
+			"03"						"item_sange_and_yasha;"
+			"04"						"item_yasha_and_kaya;"
+		}
+	}
+	//推推鞋
+	"item_force_boots"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		"AbilityCooldown"				"70"
+		
+		"AbilityValues"
+		{
+			"hp_regen"			"40"
+		}
+		
+	}
+	//推推鞋 卷轴
+	"item_recipe_force_boots"
+	{
+		"ID"							"20007"
+		//"BaseClass"                     "item_datadriven"
+
+		"ItemCost"						"2000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_force_boots"
+		"ItemRequirements"
+		{
+			"01"						"item_boots;item_pers;item_pers"
+		}
+	}
+	//墓碑
+	"item_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityName"					"item_tombstone"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"Model"							"models/props_gameplay/tombstoneb01.vmdl"
+		"PingOverrideText"				"DOTA_Chat_Tombstone_Pinged"
+		"precache"
+		{
+			"particle_folder" "particles/units/heroes/hero_morphling"
+		}
+
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		"AbilityChannelTime"			"6.5"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemCastOnPickup"				"1"
+		"ItemKillable"					"0"
+	}
+	//魔晶
+	"item_aghanims_shard"
+	{
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+	}
+	//铲子
+	"item_trusty_shovel"
+	{
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemIsNeutralDrop"				"0"
+		"ItemKillable"					"0"
+		
+		"AbilityCooldown"				"66"
+	}
+	
+	//玲珑心
+	"item_octarine_core"
+	{
+		"ItemPurchasable"				"0"
+	}
+	//玲珑心卷轴
+	"item_recipe_octarine_core"
+	{
+		"ItemPurchasable"				"0"
+		"ItemCost"						"1"
+	}
+	//风杖
+	"item_cyclone"
+	{
+		"AbilityCooldown"				"100"
+	}
+	//大风杖
+	"item_wind_waker"
+	{
+		"AbilityCooldown"				"100"
+	}
+	//血精石
+	"item_bloodstone"
+	{
+		"AbilityCooldown"				"130"
+	}
+	//绿杖
+	"item_ghost"
+	{
+		"AbilityCooldown"				"100"		 
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+		}
+	}
+	//虚灵
+	"item_ethereal_blade"
+	{
+		"AbilityCooldown"				"70"
+		"AbilityValues"
+		{
+			"duration"				"3"
+		}
+	}
+	//羊刀
+	"item_sheepstick"
+	{
+		"AbilityCooldown"				"40"
+		"AbilitySpecial"
+		{
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sheep_duration"		"2"
+			}
+		}
+	}
+	//天堂
+	"item_heavens_halberd"
+	{
+		"AbilityCooldown"				"40"
+	}
+	//林肯
+	"item_sphere"
+	{
+		"AbilityCooldown"				"30"
+	}
+	//撒旦
+	"item_satanic"
+	{
+		"AbilityCooldown"				"100"
+	}
+	//大推推
+	"item_hurricane_pike"
+	{
+		"AbilityCooldown"				"70"
+		"AbilityValues"
+		{
+			"base_attack_range"		"250"
+		}
+	}
+	//推推
+	"item_force_staff"
+	{
+		"AbilityCooldown"				"70"
+	}
+	//跳刀
+	"item_blink"
+	{
+		"AbilityCooldown"				"60"
+	}
+	//疯脸
+	"item_mask_of_madness"
+	{
+		"AbilityCooldown"				"30"
+	}
+	//大隐刀
+	"item_silver_edge"
+	{
+		"AbilityCooldown"				"100"
+		"ItemPurchasable"				"0"
+		"ItemCost"						"1"
+	}
+	//大隐刀 卷轴
+	"item_recipe_silver_edge"
+	{
+		"ItemPurchasable"				"0"
+		"ItemCost"						"1"
+	}
+	//否决
+	"item_nullifier"
+	{
+		"AbilityCooldown"				"30"
+	}
+	//晕锤
+	"item_basher"
+	{
+		"AbilityValues"
+		{
+			"bash_chance_ranged"		"0"
+		}
+	}
+	//深渊之刃
+	"item_abyssal_blade"
+	{
+		"AbilityCastRange"				"350"
+		"AbilityValues"
+		{
+			"bash_chance_ranged"	"0"
+			"bash_cooldown"			"0.7"
+		}
+	}
+	//寂灭 卷轴
+	"item_recipe_desolator_2"
+	{
+		"ID"							"20000"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator_2"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator;item_demon_edge"
+		}
+	}
+	//寂灭
+	"item_desolator_2"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		
+		"AbilityValues"
+		{
+				"bonus_damage"			"100"
+				"corruption_armor"		"-10"
+				"corruption_duration"	"7.0"
+		}
+	}
+	//天崩 卷轴
+	"item_recipe_fallen_sky"
+	{
+		"ItemCost"						"2150"
+		"ItemPurchasable"				"1"
+		"IsObsolete"					"0"
+		
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+		
+		"ItemRequirements"
+		{
+			"01"						"item_blink;item_meteor_hammer"
+		}
+		
+	}
+	//天崩
+	"item_fallen_sky"
+	{
+		"ItemPurchasable"				"1"
+		"ItemIsNeutralDrop"				"0"
+		"ItemSellable"					"1"
+		
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+		
+		"AbilityValues"
+		{
+			"stun_duration"			"1"
+		}
+	
+	}
+	//五峰长剑
+	"item_penta_edged_sword"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"item_penta_edged_sword"
+		"ItemPermanent"					"1"
+		
+		"Modifiers"
+		{
+			"modifier_item_penta_edged_sword_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnAttackLanded"
+				{
+					"CleaveAttack"
+					{
+						"CleavePercent"					  "40"
+						"CleaveRadius"                "700"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
+					}
+				}
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_penta_edged_sword"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+		
+		"AbilityValues"
+		{
+			"damage"			"45"
+			"melee_attack_range"	"200"
+			"maim_chance"			"25"
+			"maim_slow_movement"			"20"
+			"maim_slow_attack"			"60"
+			"maim_duration"			"3"
+		}
+
+	}
+	//五峰长剑 卷轴
+	"item_recipe_penta_edged_sword"
+	{
+		"ID"							"20001"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"2000"
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_penta_edged_sword"
+		"ItemRequirements"
+		{
+			"01"						"item_demon_edge;"
+		}
+	}
+	//狂战斧
+	"item_bfury"
+	{
+	}
+	//狂战斧 卷轴
+	"item_recipe_bfury"
+	{
+		"ItemCost"						"2000"
+		"ItemRequirements"
+		{
+			"01"						"item_demon_edge;item_quelling_blade"
+		}
+	}
+	//辉耀
+	"item_radiance"
+	{
+		"AbilityValues"
+		{
+			"aura_damage"			"200"
+			"aura_damage_illusions"	"200"
+		}
+	}
+	//火焰披风
+	"item_cloak_of_flames"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"ItemSellable"					"1"
+		
+		"AbilityValues"
+		{
+			"armor"			"12"
+			"magic_resistance"			"30"
+			"damage"			"120"
+			"radius"			"375"
+			"damage_illusions"	"120"
+		}
+
+	}
+	
+	//火焰披风 卷轴
+	"item_recipe_cloak_of_flames"
+	{
+		"ID"							"20002"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"2000"
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_cloak_of_flames"
+		"ItemRequirements"
+		{
+			"01"						"item_platemail;item_cloak;"
+		}
+	}
+	
+	//极
+	"item_apex"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"AbilityValues"
+		{
+			"primary_stat"				"50"
+		}
+	}
+	//极 卷轴
+	"item_recipe_apex"
+	{
+		"ID"							"20003"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"2000"
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_apex"
+		"ItemRequirements"
+		{
+			"01"						"item_ultimate_orb;item_ultimate_orb;"
+		}
+	}
+	//学徒之礼
+	"item_pupils_gift"
+	{
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+		"AbilityValues"
+		{
+				"secondary_stats"			"45"
+		}
+	}
+	//学徒之礼 卷轴
+	"item_recipe_pupils_gift"
+	{
+		"ID"							"20004"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"500"
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pupils_gift"
+		"ItemRequirements"
+		{
+			"01"						"item_ultimate_orb;item_ultimate_orb;"
+		}
+	}
+	//机械之心
+	"item_ex_machina"
+	{
+		"AbilityCooldown"				"100"
+		"ItemIsNeutralDrop"				"0"
+		"ItemPurchasable"				"1"
+
+	}
+	//机械之心 卷轴
+	"item_recipe_ex_machina"
+	{
+		"ID"							"20013"
+		"Model"							"models/props_gameplay/recipe.vmdl"
+
+		"ItemCost"						"2000"	
+		
+
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ex_machina"
+		"ItemRequirements"
+		{
+			"01"						"item_platemail;item_platemail;"
+		}
+	}
+	//圣剑 卷轴
+	"item_recipe_rapier"
+	{
+		"ItemCost"						"100"
+	}
+	//技能点
+	"item_ability_point"
+	{
+		"ID"							"20010"
+		"BaseClass"                     "item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"    		"item_tome_of_torrents"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemCost"						"2000"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"add_ability_point"
+			}
+			"SpendCharge"
+			{}
+		}
+	}
+	//雷神铠甲
+	"item_thunder_armor"
+	{
+		"BaseClass"                     "item_datadriven"
+		"ID"							"20015"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"    		"thunder_armor"
+		"ItemPermanent"					"1"
+		
+		"AbilityCooldown"                        "35"
+		
+		"OnSpellStart"      // 事件
+		{
+			"ApplyModifier"
+			{
+				"Target"					  "CASTER"
+				"ModifierName"                "modifier_item_thunder_armor"
+				"duration"					  "15"
+			}
+		}
+		
+		
+		"Modifiers"
+        {
+			"modifier_item_thunder_armor_passive"
+			{
+				"Passive"                		"1"
+				"IsHidden"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "15"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"25"
+				}
+				
+			}
+			
+			"modifier_item_thunder_armor"
+			{
+				"TextureName"			"item_thunder_armor"
+				
+				"OnCreated"
+				{	
+					"AttachEffect"
+					{
+						"Target" 					"CASTER"
+						"EffectName" 				"particles/econ/items/faceless_void/faceless_void_arcana/faceless_void_arcana_mjollnir_shield.vpcf"
+						"EffectAttachType" 			"follow_origin"
+						"EffectLifeDurationScale"   "1"
+						"EffectDurationScale"		"1"
+					}
+				}
+			
+				"OnTakeDamage"
+				{
+					 "Random"
+					{
+						"Chance"        "20"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"		"ability_script/ability_script1"
+								"Function"			"item_thunder_armor"
+							}
+						}
+					}
+				}
+			}
+			
+			"modifier_item_thunder_armor2"
+			{
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+			}
+        }
+
+	}
+	//雷神铠甲 卷轴
+	"item_recipe_thunder_armor"
+	{
+		"ID"							"20016"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"600"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_thunder_armor"
+		"ItemRequirements"
+		{
+			"01"						"item_platemail;item_maelstrom"
+		}
+	}
+	//束缚之刃
+	"item_shackles_dagger"
+	{
+		"BaseClass"     				"item_datadriven"
+		"ID"							"20017"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"    		"shackles_dagger"
+		"ItemPermanent"					"1"
+		"AbilityCooldown"				"6"
+		
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"           "TARGET"
+				"EffectName"       "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+				"Dodgeable"        "1"
+				"ProvidesVision"   "1"
+				"VisionRadius"     "300"
+				"MoveSpeed"        "1200"
+				"SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			}
+
+			"FireSound"
+			{
+				"EffectName"		"Hero_PhantomAssassin.Dagger.Cast"
+				"Target"			"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_PhantomAssassin.Dagger.Target"
+				"Target"			"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"item_shackles_dagger"
+			}
+		}
+		
+		"Modifiers"
+        {
+			"modifier_shackles_dagger"
+			{
+				"Passive"                		"1"
+				"IsHidden"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT"
+				"StatusEffectName" 				"particles/units/heroes/hero_silencer/silencer_last_word_disarm.vpcf"
+				
+				"OnAttackLanded"
+				{
+					"CleaveAttack"
+					{
+						"CleavePercent"					"60"
+						"CleaveRadius"                  "700"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
+					}
+				}
+				
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				 "Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"      "40"
+				}
+			}
+        }
+	}
+	//束缚之刃 卷轴
+	"item_recipe_shackles_dagger"
+	{
+		"ID"							"20018"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"2000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_shackles_dagger"
+		"ItemRequirements"
+		{
+			"01"						"item_demon_edge"
+		}
+	}
+	//2J相位
+	"item_phase_boots_2"
+	{
+		"BaseClass"     				"item_datadriven"
+		"ID"							"20032"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"    		"item_phase_boots_razor_arcana_alt1"
+		"ItemPermanent"					"1"
+		"AbilityCooldown"				"30"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					  "CASTER"
+				"ModifierName"                "modifier_item_phase_boots_active"
+				"duration"					  "3"
+			}
+			"FireSound"
+			{
+				"EffectName"		"DOTA_Item.PhaseBoots.Activate"
+				"Target"			"CASTER"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_item_phase_boots_2_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				//分裂
+				"OnAttackLanded"
+				{
+					"CleaveAttack"
+					{
+						"CleavePercent"					  "40"
+						"CleaveRadius"                "700"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
+					}
+				}
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_phase_boots"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+		
+		"AbilityValues"
+		{
+			"bonus_movement_speed"	"70"
+			"bonus_damage_melee"	"60"
+			"bonus_damage_range"	"40"
+			"damage_block_melee"	"0"
+			"damage_block_ranged"	"0"
+			"block_chance"			"0"
+			"phase_movement_speed"  "20"
+			"phase_movement_speed_range"  "10"
+			"phase_duration"		"3.0"
+			"bonus_attack_speed"	"0"
+			"bonus_armor"			"14"
+		}
+	}
+	//2J相位 卷轴
+	"item_recipe_phase_boots_2"
+	{
+		"ID"							"20033"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"200"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_phase_boots_2"
+		"ItemRequirements"
+		{
+			"01"						"item_phase_boots;item_platemail;item_demon_edge"
+		}
+	}
+	//力量之书
+	"item_book_of_strength"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"Model"							"models/gameplay/attrib_tome_str.vmdl"
+		"skin" "1"
+
+		"AbilityCooldown"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"20000"
+		"ItemShopTags"					"pve"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+
+		"CustomShop"					"0"
+		"RequiresCustomShop"			"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"30"
+			}
+		}
+	}
+	//敏捷之书
+	"item_book_of_agility"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+																		
+		"Model"							"models/gameplay/attrib_tome_agi.vmdl"
+		"skin" "2"
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"20000"
+		"ItemShopTags"					"pve"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+
+		"CustomShop"					"0"
+		"RequiresCustomShop"			"0"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"30"
+			}
+		}
+	}
+	//智力之书
+	"item_book_of_intelligence"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"Model"							"models/gameplay/attrib_tome_int.vmdl"
+																																																																												 
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"20000"
+		"ItemShopTags"					"pve"
+		"ItemQuality"					"consumable"
+		"ItemPurchasable"				"1"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"ItemDisplayCharges"			"1"
+
+		"CustomShop"					"0"
+		"RequiresCustomShop"			"0"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"30"
+			}
+		}
+	}
+	//陨星锤 boss
+	"item_meteor_hammer2"
+	{
+		"ID"							"20034"
+		"BaseClass"						"item_meteor_hammer"
+		
+		"AbilityChannelAnimation"		"ACT_DOTA_AREA_DENY"
+		"ItemPurchasable"				"0"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityChannelTime"			"2"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"100"
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2400"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mh;meteor hammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"bonus_all_stats"		"8"
+			"bonus_health_regen"	"6.5"
+			"bonus_mana_regen"		"2.5"
+			"burn_dps_buildings"		"60"
+			"burn_dps_units"		"1000"
+			"burn_slow"			"20"
+			"burn_duration"		"6"
+			"stun_duration"		"1.5"
+			"burn_interval"				"1.0"
+			"land_time"				".5"
+			"impact_radius"		
+			{
+				"value"		"400"
+				"affected_by_aoe_increase"	"1"
+			}
+			"max_duration"		"2"
+			"impact_damage_buildings"		"95"
+			"impact_damage_units"		"2000"
+			"enemy_particles_visible"		"0"
+		}
+		
+	}
+	//多重法杖
+	"item_multicast_staff"
+	{
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_multicast_staff"
+		"ID"							"20035"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"multicast_staff"
+		"ItemPermanent"					"1"
+		
+		"AbilityValues"
+		{
+			"SpellAmp"				"0"
+			"chance"				"30"
+			"intellect"				"30"
+			"armor"					"10"
+		}
+		
+	}
+	//多重法杖 卷轴
+	"item_recipe_multicast_staff"
+	{
+		"ID"							"20036"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"2000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_multicast_staff"
+		"ItemRequirements"
+		{
+			"01"						"item_platemail;item_mystic_staff;"
+		}
+	}
+	//拖拽之网
+	"item_drag_net"
+	{
+		"ID"							"20019"
+		"BaseClass"                     "item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"    		"drag_net"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityCooldown"				"66"
+		"AbilityCastRange"    			"800"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					  "TARGET"
+				"ModifierName"                "modifier_drag_net"
+				"duration"						"4"
+			}
+			"FireSound"
+			{
+				"EffectName"    "Hero_NagaSiren.Ensnare.Cast"
+				"Target"        "TARGET"
+			}
+		}
+		
+		"Modifiers"
+        {
+			"modifier_item_drag_net"
+			{
+				"Passive"                		"1"
+				"IsHidden"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				 "Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"      "16"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "16"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"      "16"
+				}
+			}
+        }
+	}
+	
+	//拖拽之网 卷轴
+	"item_recipe_drag_net"
+	{
+		"ID"							"20020"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"2000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_drag_net"
+		"ItemRequirements"
+		{
+			"01"						"item_ultimate_orb"
+		}
+	}
+	//3管霰弹枪
+	"item_splash_attack"
+	{
+		"ID"							"20005"
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"splash_attack"
+		"ItemPermanent"					"1"
+		
+		"Modifiers"
+		{
+			"modifier_item_splash_attack_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				 "Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"      "50"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"70"
+				}
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_splash_attack"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+	}
+	//3管霰弹枪 卷轴
+	"item_recipe_splash_attack"
+	{
+		"ID"							"20006"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"100"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_splash_attack"
+		"ItemRequirements"
+		{
+			"01"						"item_demon_edge;item_hyperstone"
+		}
+	}
+	//蝴蝶2
+	"item_butterfly2"
+	{
+		"ID"							"20037"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"                     "item_butterfly"
+		"AbilityTextureName" 		    "butterfly2"
+
+		"ItemShopTags"					"agi;damage;evasion;attack_speed"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"bfly;butterfly"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"				"1"
+		
+		"AbilityValues"
+		{
+			"bonus_agility"			"60"
+			"bonus_evasion"			"60"
+			"bonus_attack_speed"	"60"
+			"bonus_damage"	"60"
+		}
+	}
+	//蝴蝶2 卷轴
+	"item_recipe_butterfly2"
+	{
+		"ID"							"20038"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"10000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_butterfly2"
+		"ItemRequirements"
+		{
+			"01"						"item_butterfly;item_butterfly"
+		}
+	}
+	//暗灭3
+	"item_desolator3"
+	{
+		"ID"							"20039"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "desolator3"
+
+		"Modifiers"
+		{
+			"modifier_item_desolator3_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_greater_crit"
+					}
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_desolator_2"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			"bonus_damage"			"90"
+			"crit_chance"			"30"
+			"crit_multiplier"		"250"
+			
+			"corruption_armor"		"-12"
+			"corruption_duration"	"7.0"
+			
+			"tips_damage"			"180"
+		}
+	}
+	//暗灭3 卷轴
+	"item_recipe_desolator3"
+	{
+		"ID"							"20040"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"10000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator3"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator_2;item_greater_crit"
+		}
+	}
+	//多重法杖2
+	"item_multicast_staff2"
+	{
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_multicast_staff2"
+		"ID"							"20041"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"multicast_staff"
+		"ItemPermanent"					"1"
+		
+		"AbilityValues"
+		{
+			"SpellAmp"				"15"
+			"chance"				"50"
+			"intellect"				"45"
+			"armor"					"18"
+		}
+		
+	}
+	//多重法杖 卷轴
+	"item_recipe_multicast_staff2"
+	{
+		"ID"							"20042"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName"    		"item_recipe"
+		"ItemCost"						"10000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_multicast_staff2"
+		"ItemRequirements"
+		{
+			"01"						"item_multicast_staff;item_platemail;item_kaya;"
+		}
+	}
+	//强袭2
+	"item_assault2"
+	{
+		"ID"							"20043"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_carapace_of_qaldin"
+
+		"Modifiers"
+		{
+			"modifier_item_assault2_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_desolator_2"
+					}
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_assault2_positive_aura"
+					}
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_assault2_negative_armor_aura"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "%bonus_attack_speed"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "%bonus_armor"
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			"bonus_attack_speed"	"50"
+			"bonus_armor"			"15"
+			"aura_radius"			"1200"
+			"aura_attack_speed"		"50"
+			"aura_positive_armor"	"10"
+			"aura_negative_armor"	"-8"
+			
+			"bonus_damage"			"100"
+			"corruption_armor"		"-12"
+			"corruption_duration"	"7.0"
+			
+		}
+	}
+	//强袭2 卷轴
+	"item_recipe_assault2"
+	{
+		"ID"							"20044"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"20000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_assault2"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator_2;item_assault"
+		}
+	}
+	//力量跳刀
+	"item_overwhelming_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	"item_recipe_overwhelming_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	"item_swift_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	"item_recipe_swift_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	"item_arcane_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	"item_recipe_arcane_blink"
+	{
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
+		"ItemInitialStockTime"			"670"
+	}
+	//挑战
+	"item_hood_of_defiance"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"					"0"
+		
+		"AbilityValues"
+		{
+			"bonus_spell_resist"	"25"
+			"bonus_health_regen"	"20"
+			"tooltip_resist"	"25"
+			"barrier_block"			"350"
+			"barrier_duration"		"12.0"
+		}
+	}
+	//挑战 卷轴
+	"item_recipe_hood_of_defiance"
+	{
+		"ItemPurchasable"				"1"
+		"IsObsolete"					"0"
+		
+		"ItemRequirements"
+		{
+			"01"						"item_ring_of_health;item_cloak;item_ring_of_regen"
+		}
+	}
+	//狂暴药剂
+	"item_berserk_potion"
+	{
+		"ID"							"20045"
+		"BaseClass"                     "item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"    		"berserk_potion"
+
+		"AbilityCooldown"				"100"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					  "CASTER"
+				"ModifierName"                "modifier_alchemist_chemical_rage"
+				"duration"						"%duration"
+			}
+			"FireSound"
+			{
+				"EffectName"    "Hero_Alchemist.BerserkPotion.Cast"
+				"Target"        "CASTER"
+			}
+		}
+		"Modifiers"
+        {
+			"modifier_item_berserk_potion_passive"
+			{
+				"Passive"                		"1"
+				"IsHidden"						"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "40"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"100"
+				}
+			}
+			
+        }
+		
+		"AbilityValues"
+		{
+			"duration"				"10"
+			"base_attack_time"		
+			{
+				"value"		"1.3"
+				"special_bonus_unique_alchemist_8"		"-0.1"
+
+			}
+		}
+	}
+	//狂暴药剂 卷轴
+	"item_recipe_berserk_potion"
+	{
+		"ID"							"20046"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"10000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_berserk_potion"
+		"ItemRequirements"
+		{
+			"01"						"item_pers;item_pers;item_moon_shard;"
+		}
+	}
+	//奥术法杖
+	"item_brilliance_staff"
+	{
+		"ID"							"20047"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_brilliance_staff"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    		"brilliance_staff"
+		
+		"AbilityValues"
+		{
+			"amp_ratio"		"0.8"
+		}
+	}
+	//奥术法杖 卷轴
+	"item_recipe_brilliance_staff"
+	{
+		"ID"							"20048"
+		"BaseClass"                     "item_datadriven"
+		"ItemShopTags"					"pve"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"20000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_brilliance_staff"
+		"ItemRequirements"
+		{
+			"01"						"item_kaya;item_mystic_staff"
+		}
+	}
+	//冰之枪
+	"item_ice_lance"
+	{
+		"ID"							"20049"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_ice_lance"
+		"AbilityTextureName" 		    "item_hurricane_pike_drow_arcana"
+
+		"AbilityValues"
+		{
+			//魔龙枪 
+			"bonus_agility"			"0"
+			"bonus_strength"		"0"
+			"base_attack_range"		"250"
+			
+			//冰眼
+			"bonus_all_stats"		"35"
+			"bonus_health"			"300"
+			"bonus_mana"			"300"
+			"cold_slow_melee"	"-20"
+			"cold_attack_slow_melee"	"-30"
+			"cold_slow_ranged"	"-50"
+			"cold_attack_slow_ranged"	"-60"
+			"cold_duration"	"3.0"
+			"heal_reduction"	"40"
+				
+			//霰弹枪
+			"damage"		"50"
+			"attack_speed"	"70"
+			"splash_attack"	"50"
+		}
+	}
+	//冰之枪 卷轴
+	"item_recipe_ice_lance"
+	{
+		"ID"							"20050"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"20000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ice_lance"
+		"ItemRequirements"
+		{
+			"01"						"item_dragon_lance;item_skadi;item_splash_attack;"
+		}
+	}
+	//海盗帽
+	"item_pirate_hat2"
+	{
+		"ID"							"20051"
+		"BaseClass"                     "item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName" 		    "item_pirate_hat"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.0"
+		
+		"AbilityCooldown"				"100"
+		"ItemStackable"					"0"
+		"ItemPermanent"					"1"
+		
+		
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"item_hand_of_midas"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_pirate_hat2_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+				}
+			}
+		}
+		
+		"AbilityValues"
+		{
+			"bonus_attack_speed"	"140"
+			"xp_multiplier"			"2.5"
+			"bonus_gold"			"200"
+		}
+	}
+	//海盗帽 卷轴
+	"item_recipe_pirate_hat2"
+	{
+		"ID"							"20052"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"500"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_pirate_hat2"
+		"ItemRequirements"
+		{
+			"01"						"item_hand_of_midas;item_moon_shard;"
+		}
+	}
+	
+	//金箍棒2 雷霆棍
+	"item_monkey_king_bar2"
+	{
+		"ID"							"20053"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_princes_knife"
+		
+		"AbilityCooldown"				"35"
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"					  "CASTER"
+				"ModifierName"                "modifier_item_mjollnir_static"
+				"duration"					  "15"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_item_monkey_king_bar2_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_monkey_king_bar"
+					}
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_mjollnir"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			"tips_damage"			"70"
+			"tips_attack_speed"		"120"
+			//金箍棒
+			"bonus_damage"			"35"
+			"bonus_attack_speed"	"60"
+			"bonus_chance"			"80"
+			"bonus_chance_damage"	"125"
+			
+			//雷锤
+			"static_duration"		"15.0"
+			"static_chance"			"20"
+			"static_strikes"		"10"
+			"static_damage"			"250"
+			"static_primary_radius"	"600"
+			"static_seconary_radius"	"900"
+			"static_radius"			"900"
+			"static_cooldown"		"1.0"
+			//漩涡
+			"chain_chance"			"30"
+			"chain_damage"			"200"
+			"chain_strikes"			"12"
+			"chain_radius"			"650"
+			"chain_delay"			"0.25"
+			"chain_cooldown"		"0.2"
+			"max_charges"			"0"
+			"illusion_multiplier_pct"	"150"
+		}
+	}
+	
+	//金箍棒2 卷轴
+	"item_recipe_monkey_king_bar2"
+	{
+		"ID"							"20054"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"12000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_monkey_king_bar2"
+		"ItemRequirements"
+		{
+			"01"						"item_monkey_king_bar;item_mjollnir;"
+		}
+	}
+	
+	//冰之心
+	"item_ice_heart"
+	{
+		"ID"							"20055"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_ice_heart"
+		"AbilityTextureName" 		    "ice_heart"
+
+		"AbilityValues"
+		{
+			//龙芯
+			"bonus_strength"		"40"
+			"bonus_health"			"250"
+			"health_regen_pct"		"1.6"
+			
+			//冰眼
+			"bonus_all_stats"		"22"
+			"bonus_mana"			"500"
+			"tip_health"			"500"
+			
+			"cold_slow_melee"	"-20"
+			"cold_attack_slow_melee"	"-30"
+			"cold_slow_ranged"	"-50"
+			"cold_attack_slow_ranged"	"-60"
+			"cold_duration"	"3.0"
+			"heal_reduction"	"40"
+		}
+	}
+	//冰之心 卷轴
+	"item_recipe_ice_heart"
+	{
+		"ID"							"20056"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"13000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ice_heart"
+		"ItemRequirements"
+		{
+			"01"						"item_heart;item_skadi;"
+		}
+	}
+	
+	//辉耀2
+	"item_radiance2"
+	{
+		"ID"							"20057"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_radiance_spectre_arcana_alt1"
+
+		"Modifiers"
+		{
+			"modifier_item_radiance2_passive"
+			{
+				"Passive" 				"1"
+				"IsHidden" 				"1"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_radiance"
+					}
+					"ApplyModifier"
+					{
+						"Target"					  "CASTER"
+						"ModifierName"                "modifier_item_cloak_of_flames"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"ability_script/ability_script1"
+						"Function"			"destroy_item_buff"
+					}
+				}
+			}
+		}
+		"AbilityValues"
+		{
+			//辉耀
+			"bonus_damage"			"60"
+			"aura_damage"			"200"
+			"aura_damage_illusions"	"200"
+			"upgrade_day_vision"	"250"
+			"evasion"				"15"
+			"blind_pct"				"15"
+			"aura_radius"			"700"
+			"illusion_multiplier_pct"	"150"
+			
+			//火焰披风
+			"armor"			"15"
+			"magic_resistance"			"35"
+			"damage"			"200"
+			"radius"			"375"
+			"damage_illusions"	"200"
+		}
+	}
+	
+	//辉耀2 卷轴
+	"item_recipe_radiance2"
+	{
+		"ID"							"20058"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"14000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_radiance2"
+		"ItemRequirements"
+		{
+			"01"						"item_radiance;item_cloak_of_flames;"
+		}
+	}
+	//技能书
+	"item_ability_book"
+	{
+		"ID"							"20059"
+		"BaseClass"						"item_lua"
+		"ScriptFile"				    "abilities/item_ability_book"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"    		"item_tome_of_aghanim"
+		
+		"AbilityCooldown"				"0.5"
+		
+		"ItemStackable"					"1"
+		"ItemInitialCharges"			"1"
+		"ItemPermanent"					"0"
+		"ItemCost"						"30000"
+		"ItemPurchasable"				"1"
+	}
+	//撒旦2
+	"item_satanic2"
+	{
+		"ID"							"20060"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_satanic2"
+		"AbilityTextureName" 		    "item_satanic_drow_arcana"
+		
+		"AbilityCooldown"				"100"
+		
+		"AbilityValues"
+		{
+			//吸血
+			"value"				"20"
+			"tip_damage"		"100"
+			//骑士剑
+			// "bonus_damage"			"16"
+			// "bonus_lifesteal"			"0"
+			// "bonus_spell_lifesteal"			"0"
+			"bonus_amp"			"20"
+			//撒旦
+			"bonus_strength"		"35"
+			"bonus_damage"			"50"
+			"lifesteal_percent"		"45"
+			"creep_lifesteal_reduction_pct"	"40"
+			"unholy_lifesteal_percent"	"155"
+			"unholy_lifesteal_total_tooltip"	"200"
+			"unholy_duration"		"6.0"
+		}
+	}
+	//撒旦2 卷轴
+	"item_recipe_satanic2"
+	{
+		"ID"							"20061"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"14000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_satanic2"
+		"ItemRequirements"
+		{
+			"01"						"item_satanic;item_paladin_sword;"
+		}
+	}
+	//碎颅剑
+	"item_bash_sword"
+	{
+		"ID"							"20062"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_bash_sword"
+		"AbilityTextureName" 		    "bash_sword"
+		
+		"AbilityValues"
+		{
+			//冰眼
+			"bonus_all_stats"		"25"
+			"bonus_health"			"250"
+			"bonus_mana"			"250"
+			"cold_slow_melee"	"-20"
+			"cold_attack_slow_melee"	"-30"
+			"cold_slow_ranged"	"-50"
+			"cold_attack_slow_ranged"	"-60"
+			"cold_duration"	"3.0"
+			"heal_reduction"	"40"
+			
+			//五峰长剑
+			"damage"			"45"
+			"melee_attack_range"	"200"
+			"maim_chance"			"25"
+			"maim_slow_movement"			"20"
+			"maim_slow_attack"			"60"
+			"maim_duration"			"3"
+			
+			//晕锤
+			"bonus_damage"		"30"
+			"bonus_strength"		"10"
+			"bash_chance_melee"		"25"
+			"bash_chance_ranged"		"0"
+			"bash_duration"			"1.2"
+			"bash_cooldown"			"2.3"
+			"bonus_chance_damage"	"100"
+			//tip
+			"tip_damage"			"75"
+		}
+	}
+	//撒旦2 卷轴
+	"item_recipe_bash_sword"
+	{
+		"ID"							"20063"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+		
+
+		"ItemCost"						"20000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_bash_sword"
+		"ItemRequirements"
+		{
+			"01"						"item_skadi;item_penta_edged_sword;item_basher;"
+		}
+	}
+	//血精石2
+	"item_bloodstone2"
+	{
+		"ID"							"20064"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"     				"item_lua"
+		"ScriptFile"				    "abilities/item_bloodstone2"
+		"AbilityTextureName" 		    "bloodstone2"
+		"AbilityCooldown"				"100"
+		
+		"AbilityValues"
+		{
+			//血精
+			"bonus_health"			"500"
+			"bonus_mana"			"500"
+			"spell_lifesteal"		"30"
+			"buff_duration"			"6"
+			"lifesteal_multiplier"	"3"
+			"hp_cost"				"0"
+			//吸血
+			"value"					"30"
+			//三叉戟
+			"bonus_strength"		"30"
+			"bonus_agility"			"30"
+			"bonus_intellect"			"30"
+			"status_resistance"				"30"
+			"bonus_attack_speed"	"30"
+			"movement_speed_percent_bonus"	"10"
+			"hp_regen_amp"			"30"
+			"mana_regen_multiplier"		"30"
+			"spell_amp"			"30"
+			"magic_damage_attack"	"30"
+		}
+		
+	}
+	//血精石2 卷轴
+	"item_recipe_bloodstone2"
+	{
+		"ID"							"20065"
+		"BaseClass"                     "item_datadriven"
+		"AbilityTextureName" 		    "item_recipe"
+
+		"ItemCost"						"20000"
+	
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_bloodstone2"
+		"ItemRequirements"
+		{
+			"01"						"item_bloodstone;item_trident;"
+		}
+	}
+	//贪婪技能书 
+	"item_greed_book"
+	{
+		"ID"							"20066"
+		"BaseClass"                     "item_datadriven"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+		"ItemPurchasable"				"0"
+		"AbilityCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"	
+		"AbilityTextureName"    		"greed_book"
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"DOTA_Item.Cheese.Activate"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"ability_script/ability_script1"
+				"Function"			"item_greed_book"
+			}
+		}
+	}
+}

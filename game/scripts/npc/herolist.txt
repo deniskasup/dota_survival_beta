@@ -1,4 +1,8 @@
 "CustomHeroList"
 {
-    "npc_dota_hero_axe" "1"
+    "npc_dota_hero_zuus" "1"
+    "npc_dota_hero_juggernaut" "1"
+    "npc_dota_hero_invoker" "1"
+    "npc_dota_hero_pudge" "1"
+    "npc_dota_hero_nevermore" "1"
 }

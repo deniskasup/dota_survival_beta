@@ -21,6 +21,7 @@ export class axe_counter_helix_autocast extends BaseAbility {
     }
 
     OnSpellStart() {
+        print('tst');
         const caster = this.GetCaster();
         const radius = this.GetSpecialValueFor("radius");
         const damage = this.GetSpecialValueFor('damage');
@@ -49,13 +50,5 @@ export class axe_counter_helix_autocast extends BaseAbility {
             ApplyDamage(damageTable)
         })
 
-    }
-
-    OnAbilityUpgrade() {
-        const cooldown = this.GetSpecialValueFor("AbilityCooldown")
-        Timers.CreateTimer(cooldown, () => {
-            this.GetCaster().CastAbilityNoTarget(this, this.GetCaster().GetEntityIndex())
-            return cooldown
-        });
     }
 }
