@@ -5,7 +5,7 @@
         "Ability1"		"zuus_arc_lightning"
         "Ability2"		""
         "Ability3"		""
-        "Ability4"		""
+        "Ability4"		"zuus_heavenly_jump"
         "Ability5"		""
         "Ability6"		""
         "Ability10"		"special_bonus_unique_axe_7"

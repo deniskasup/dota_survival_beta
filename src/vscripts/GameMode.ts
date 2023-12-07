@@ -1,5 +1,7 @@
 import { reloadable } from "./lib/tstl-utils";
 
+LinkLuaModifier("modifier_spell_autocast", "modifiers/global/modifier_spell_autocast", LuaModifierType.LUA_MODIFIER_MOTION_NONE)
+
 const heroSelectionTime = 60;
 
 declare global {
@@ -26,6 +28,10 @@ export class GameMode {
         // Register event listeners for dota engine events
         ListenToGameEvent("game_rules_state_change", () => this.OnStateChange(), undefined);
         ListenToGameEvent("npc_spawned", event => this.OnNpcSpawned(event), undefined);
+        ListenToGameEvent("dota_on_hero_finish_spawn", (data) => {
+            const hero = HeroList.GetAllHeroes().find(hero => hero.GetEntityIndex() === data.heroindex)
+            hero?.AddNewModifier(hero,  undefined, 'modifier_spell_autocast', undefined)
+        }, undefined)
 
         // Register event listeners for events from the UI
         // CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
