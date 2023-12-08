@@ -1,5 +1,8 @@
 #base "heroes/meepo.kv"
 #base "heroes/axe.kv"
+#base "heroes/zuus.kv"
+#base "heroes/viper.kv"
+#base "heroes/lina.kv"
 
 "DOTAAbilities"
 {
