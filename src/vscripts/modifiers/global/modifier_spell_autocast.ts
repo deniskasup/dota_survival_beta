@@ -1,6 +1,7 @@
 import {BaseModifier, registerModifier} from "../../lib/dota_ts_adapter";
 import getRandomInRange from "../../helpers/getRandomInRange";
 import {noCastSpells} from "../../constants/autocast";
+import {findEnemiesInRadius} from "../../helpers/findInRadius";
 
 @registerModifier()
 export class modifier_spell_autocast extends BaseModifier {
@@ -54,17 +55,7 @@ export class modifier_spell_autocast extends BaseModifier {
 
 
 const castAbility = (ability: CDOTABaseAbility, caster: CDOTA_BaseNPC) => {
-    const enemiesList = FindUnitsInRadius(
-        caster!.GetTeamNumber(),
-        caster!.GetLocalOrigin(),
-        undefined,
-        1500,
-        DOTA_UNIT_TARGET_TEAM.DOTA_UNIT_TARGET_TEAM_ENEMY,
-        DOTA_UNIT_TARGET_TYPE.DOTA_UNIT_TARGET_CREEP+1, // Проверить, объединение ли это с предыдущим
-        DOTA_UNIT_TARGET_FLAGS.DOTA_UNIT_TARGET_FLAG_NONE,
-        FindOrder.FIND_CLOSEST,
-        false
-    )
+    const enemiesList = findEnemiesInRadius(caster)
 
     // const aliesList = FindUnitsInRadius(
     //     caster?.GetTeamNumber(),

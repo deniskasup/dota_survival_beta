@@ -1,8 +1,11 @@
-import { reloadable } from "./lib/tstl-utils";
+import {reloadable} from "./lib/tstl-utils";
+import {heroSelectionTime, maxCreepsCount} from "./constants/gameMode";
+import {findEnemiesInRadius} from "./helpers/findInRadius";
+import {arrayShuffle} from "./helpers/arrayShuffle";
 
 LinkLuaModifier("modifier_spell_autocast", "modifiers/global/modifier_spell_autocast", LuaModifierType.LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_base_settings", "modifiers/global/modifier_base_settings", LuaModifierType.LUA_MODIFIER_MOTION_NONE)
 
-const heroSelectionTime = 60;
 
 declare global {
     interface CDOTAGameRules {
@@ -27,11 +30,8 @@ export class GameMode {
 
         // Register event listeners for dota engine events
         ListenToGameEvent("game_rules_state_change", () => this.OnStateChange(), undefined);
-        ListenToGameEvent("npc_spawned", event => this.OnNpcSpawned(event), undefined);
-        ListenToGameEvent("dota_on_hero_finish_spawn", (data) => {
-            const hero = HeroList.GetAllHeroes().find(hero => hero.GetEntityIndex() === data.heroindex)
-            hero?.AddNewModifier(hero,  undefined, 'modifier_spell_autocast', undefined)
-        }, undefined)
+        ListenToGameEvent("npc_spawned", (event) => this.OnNpcSpawned(event), undefined);
+        ListenToGameEvent("dota_on_hero_finish_spawn", (event) => this.OnHeroPlayerHeroSpawned(event), undefined)
 
         // Register event listeners for events from the UI
         // CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
@@ -74,15 +74,13 @@ export class GameMode {
         }
 
         // Start game once pregame hits
-        if (state === DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) {
+        if (state === DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) {
             Timers.CreateTimer(0.2, () => this.StartGame());
         }
     }
 
     private StartGame(): void {
-        print("Game starting!");
-
-        // Do some stuff here
+        Timers.CreateTimer(5, this.SpawnCreeps)
     }
 
     // Called on script_reload
@@ -94,5 +92,52 @@ export class GameMode {
 
     private OnNpcSpawned(event: NpcSpawnedEvent) {
 
+    }
+
+    private OnHeroPlayerHeroSpawned(data: GameEventProvidedProperties & DotaOnHeroFinishSpawnEvent) {
+        const hero = HeroList.GetAllHeroes().find(hero => hero.GetEntityIndex() === data.heroindex)
+
+        if (hero) {
+            hero?.AddNewModifier(hero, undefined, 'modifier_spell_autocast', undefined)
+            hero?.AddNewModifier(hero, undefined, 'modifier_base_settings', undefined)
+        }
+    }
+
+    private SpawnCreeps() {
+        const heroes = HeroList.GetAllHeroes()
+        const spawnChecker = Entities.FindByName(undefined, 'creeps_count_checker')
+
+        //TODO: вынести в хелпер
+        const aliveCreepsCount = FindUnitsInRadius(
+            DOTATeam_t.DOTA_TEAM_GOODGUYS,
+            spawnChecker!.GetAbsOrigin(),
+            undefined,
+            20000,
+            DOTA_UNIT_TARGET_TEAM.DOTA_UNIT_TARGET_TEAM_ENEMY,
+            DOTA_UNIT_TARGET_TYPE.DOTA_UNIT_TARGET_CREEP, // Проверить, объединение ли это с предыдущим
+            DOTA_UNIT_TARGET_FLAGS.DOTA_UNIT_TARGET_FLAG_NONE,
+            FindOrder.FIND_CLOSEST,
+            false
+        ).length
+
+
+        const pointsAvailableForSpawn = heroes.reduce((points, hero, index) => {
+            const pointsInHeroVisionPlus = Entities.FindAllByNameWithin('creep_spawn_point', hero.GetAbsOrigin(), hero.GetCurrentVisionRange() + 700)
+
+            const pointsInHeroVision = Entities.FindAllByNameWithin('creep_spawn_point', hero.GetAbsOrigin(), hero.GetCurrentVisionRange())
+
+            return [...points, ...pointsInHeroVisionPlus.filter(point => !pointsInHeroVision.includes(point))]
+        }, [] as CBaseEntity[])
+
+        arrayShuffle(pointsAvailableForSpawn).slice(0, PlayerResource.GetPlayerCount() * maxCreepsCount - aliveCreepsCount).forEach(point => {
+            const unit = CreateUnitByName('npc_dota_neutral_kobold', point.GetAbsOrigin(), true, undefined, undefined, DOTATeam_t.DOTA_TEAM_BADGUYS)
+            const hero = findEnemiesInRadius(unit, 10000)[0]
+
+            if(hero) {
+                unit.SetForceAttackTarget(hero)
+            }
+        })
+
+        return 5
     }
 }
