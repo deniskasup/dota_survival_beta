@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dota_survival_beta.iml" filepath="$PROJECT_DIR$/.idea/dota_survival_beta.iml" />
+      <module fileurl="file://$USER_HOME$/PhpstormProjects/nw-dota2editor/.idea/nw-dota2editor.iml" filepath="$USER_HOME$/PhpstormProjects/nw-dota2editor/.idea/nw-dota2editor.iml" />
     </modules>
   </component>
 </project>
