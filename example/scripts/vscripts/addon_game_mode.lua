@@ -49,7 +49,7 @@ function PveGameMode:Init()
 	end
 	--英雄技能表
 	CustomNetTables:SetTableValue("ability_pool","value",ability_pool)
-	
+
 	--设置pre时间
 	GameRules:SetPreGameTime(70)
 	--强制开始游戏
@@ -58,7 +58,7 @@ function PveGameMode:Init()
 	init_net_tables()
 	--初始化难度
 	CustomNetTables:SetTableValue( "map_info", "difficulty",{value=0} )
-	
+
 	local level_table = {}
 	local total_xp = 0
 	for i=1,30 do
@@ -72,15 +72,15 @@ function PveGameMode:Init()
 			level_table[i] = total_xp
 		end
 	end
-	
+
 	--设置经验表
 	GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(level_table)
 	--启动自定义升级经验
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
-	
+
 	link_modifiers()
 	bot_link_modifiers()
-	
+
 	--设置游戏队伍
 	if GetMapName()=="pve" or GetMapName()=="apex"then
 		GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS,0)
@@ -109,7 +109,7 @@ function PveGameMode:Init()
 	GameRules:SetUseUniversalShopMode(true)
 	--扫描cd
 	GameRules:GetGameModeEntity():SetCustomScanCooldown(20)
-	
+
 	if(GetMapName()=="pvp")then
 		--团队死斗模式
 		border = 8200
@@ -168,7 +168,7 @@ function PveGameMode:OnTreeCut(keys)
 		EmitSoundOn( "General.Sell", hero)
 		pos = hero:GetOrigin()
 		pos.z = 250
-		
+
 		local particle = ParticleManager:CreateParticleForPlayer("particles/generic_gameplay/lasthit_coins.vpcf",PATTACH_HEALTHBAR,hero,hero:GetPlayerOwner())
 		ParticleManager:SetParticleControl( particle, 1, pos)
 		local particle = ParticleManager:CreateParticleForPlayer("particles/msg_fx/msg_gold.vpcf",PATTACH_OVERHEAD_FOLLOW,hero,hero:GetPlayerOwner())
@@ -176,7 +176,7 @@ function PveGameMode:OnTreeCut(keys)
 		ParticleManager:SetParticleControl( particle, 2, Vector( 1,2,0 ) )
 		ParticleManager:SetParticleControl( particle, 3, Vector( 255,215,0 ) )
 	end
-	
+
 end
 
 --回调测试函数
@@ -185,19 +185,19 @@ function test(eventSourceIndex, data)
 	-- local boss = CreateUnitByName("npc_dota_creature_primal_beast",Vector(1800,0,0), true, nil, nil, DOTA_TEAM_CUSTOM_6)
 	-- boss:AddNewModifier(boss,nil,"modifier_"..boss:GetUnitName(),nil)
 	-- boss:AddNewModifier(boss,nil,"modifier_boss_difficulty",nil)
-	
+
 	_G.boss_difficulty_table={3,5,2,6}
 	_G.boss_difficulty_table[0] = 0
 	CustomNetTables:SetTableValue( "vote_table", "value",_G.boss_difficulty_table)
 	-- CustomGameEventManager:Send_ServerToAllClients( "pve_end", {round=1} )
 	-- PrecacheUnitByNameAsync(hero:GetName(),function()end,nil)
-	
-	
+
+
 	-- a = hero:FindAllModifiers()
 	-- for k,v in pairs(a)do
 		-- print(v:GetName())
 	-- end
-	
+
 	-- a = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf",0,nil)
 	-- print(a)
 	-- a = Entities:FindAllInSphere(hero:GetOrigin(),600)
@@ -210,24 +210,24 @@ function test(eventSourceIndex, data)
 			-- print(v:GetName())
 		-- end)
 	-- end
-	
-	
+
+
 	-- hero:Kill(nil,nil)
-	
+
 	-- boss = CreateUnitByName("npc_dota_creature_primal_beast",Vector(1000,0,0), true, nil, nil, 6)
 	-- boss:AddNewModifier(boss,nil,"modifier_"..boss:GetUnitName(),nil)
 	-- boss:AddNewModifier(boss,nil,"modifier_boss_difficulty",nil)
-	
-	
+
+
 	-- local dummy =  CreateUnitByName("npc_dota_hero_abaddon",Vector(3000,0,128), true, nil, nil, 3)
 	-- dummy:AddNewModifier(nil,nil,"modifier_apex_vision",nil)
 	-- CreateItemOnPositionSync(Vector(1000,0,128),CreateItem("item_trusty_shovel",nil,nil))
-	
+
 	-- GameRules:SendCustomMessage("player_abandon",0,0)
 	-- http_abandon_game(0)
 	-- CustomGameEventManager:Send_ServerToAllClients( "pve_end", {} )
 	-- FireGameEvent("start_apex",nil)
-	
+
 	-- FireGameEvent("spawn_boss",nil)
 	-- CustomGameEventManager:Send_ServerToAllClients( "pvp_end", {} )
 	-- hero:Kill(nil,nil)
@@ -245,7 +245,7 @@ function test(eventSourceIndex, data)
 	-- hero:AddNewModifier(hero,nil,"modifier_wudi",nil)
 	-- FireGameEvent("spawn_boss",nil)
 	-- hero:AddNewModifier(hero,nil,"modifier_wudi",nil)
-	
+
 end
 --回调测试函数2
 function test2(eventSourceIndex, data)
@@ -254,7 +254,7 @@ function test2(eventSourceIndex, data)
 	-- 刷傀儡
 	CreateUnitByName("npc_dota_hero_target_dummy",Vector(800,0,128), true, nil, nil, 6)
 	-- hero:Kill(nil,nil)
-	
+
 	-- hero:ModifyGold(99999,true,DOTA_ModifyGold_HeroKill)
 	-- for i=1,30 do
 		-- hero:HeroLevelUp(true)
@@ -303,7 +303,7 @@ end
 function create_gold_mine()
 	-- Vector(500,500,128)
 	-- local pos = Vector(2000,-4500,128)
-	
+
 	-- local pos = RandomVector(RandomInt(2000,7000))
 	local pos = Vector(-2000,-4500,128)
 	local gold_mine = CreateUnitByName("npc_dota_gold_mine",pos, false, nil, nil, DOTA_TEAM_CUSTOM_6)
@@ -328,7 +328,7 @@ function create_particle(eventSourceIndex, data)
 	if hero_particles[data.PlayerID]["particles2"][data.particle_index]["id"] then
 		ParticleManager:DestroyParticle(hero_particles[data.PlayerID]["particles2"][data.particle_index]["id"],true)
 	end
-	
+
 	hero_particles[data.PlayerID]["particles2"][data.particle_index]["name"] = data.particle_name
 	hero_particles[data.PlayerID]["particles2"][data.particle_index]["attach"] = tonumber(data.particle_attach)
 	hero_particles[data.PlayerID]["particles2"][data.particle_index]["id"] = ParticleManager:CreateParticle(data.particle_name,tonumber(data.particle_attach),hero)
@@ -336,12 +336,12 @@ end
 --上传特效
 function up_particles(eventSourceIndex, data)
 	local request = CreateHTTPRequestScriptVM("post",host.."up_particles")
-	
+
 	request:SetHTTPRequestHeaderValue("x-api-key", key);
 	request:SetHTTPRequestHeaderValue("user_id", tostring(PlayerResource:GetSteamAccountID(data.PlayerID)));
 	DeepPrintTable(hero_particles[data.PlayerID])
 	request:SetHTTPRequestRawPostBody("application/json", json.encode(hero_particles[data.PlayerID]));
-	
+
 	request:Send(nil)
 end
 --加载特效
@@ -495,7 +495,7 @@ function download_user_data()
 	print("开始下载数据")
 	--下载次数加1
 	down_data_count = down_data_count+1
-	
+
 	local players={}
 	for i=0,9 do
 		--AccountID为数值
@@ -504,9 +504,9 @@ function download_user_data()
 		end
 	end
 	DeepPrintTable(players)
-	
+
 	local request = CreateHTTPRequestScriptVM("post",host.."down_data")
-	
+
 	request:SetHTTPRequestHeaderValue("x-api-key", key)
 	request:SetHTTPRequestRawPostBody("application/json", json.encode(players))
 	request:Send(function(res)
@@ -609,7 +609,7 @@ function select_difficulty(eventSourceIndex, data)
 
 	_G.boss_difficulty_table[data.PlayerID] = data.difficulty
 	CustomNetTables:SetTableValue( "vote_table", "value",_G.boss_difficulty_table)
-	
+
 	GameRules:SendCustomMessage("difficulty"..data.difficulty,0,0)
 	local vote_difficulty = 0
 	local vote_number = 0
@@ -625,7 +625,7 @@ function select_difficulty(eventSourceIndex, data)
 			vote_number = number
 		end
 	end
-	
+
 	_G.boss_difficulty = vote_difficulty
 	CustomGameEventManager:Send_ServerToAllClients( "selected_difficulty", {difficulty=vote_difficulty} )
 	CustomNetTables:SetTableValue( "map_info", "difficulty",{value=vote_difficulty} )
@@ -669,7 +669,7 @@ function select_hero(eventSourceIndex, data)
 			hero:RemoveAbilityByHandle(hero:GetAbilityByIndex(i))
 		end
 	end
-	
+
 	--添加技能
 	for k,v in pairs(_G.player_ability_pool[data.PlayerID]) do
 	   if(ability_suite_pool[v] == nil) then
@@ -753,7 +753,7 @@ function PveGameMode:OrderFilter(event)
 	if event.order_type == 19 and EntIndexToHScript(event.entindex_ability):GetName()~="item_rapier" and (event.entindex_target==16 or event.entindex_target==15 or EntIndexToHScript(event.entindex_ability):GetItemSlot()==15 or EntIndexToHScript(event.entindex_ability):GetItemSlot()==16) then
 		--目标不是圣剑
 		if(EntIndexToHScript(event.entindex_ability):GetParent():GetItemInSlot(event.entindex_target) and EntIndexToHScript(event.entindex_ability):GetParent():GetItemInSlot(event.entindex_target):GetName()=="item_rapier")then
-			
+
 		else
 			EntIndexToHScript(event.entindex_ability):GetParent():SwapItems(EntIndexToHScript(event.entindex_ability):GetItemSlot(),event.entindex_target)
 			return false
@@ -931,7 +931,7 @@ function http_abandon_game(i)
 	data.id=PlayerResource:GetSteamAccountID(i)
 	DeepPrintTable(data)
 	local request = CreateHTTPRequestScriptVM("post",host.."abandon_game")
-	
+
 	request:SetHTTPRequestHeaderValue("x-api-key", key);
 	request:SetHTTPRequestRawPostBody("application/json", json.encode(data));
 	request:Send(nil)
@@ -952,7 +952,7 @@ function load_hero_data()
 		hero_data_table[v]["AttributeStrengthGain"] = string.format("%.2f", hero.AttributeStrengthGain)
 		hero_data_table[v]["AttributeAgilityGain"] = string.format("%.2f", hero.AttributeAgilityGain)
 		hero_data_table[v]["AttributeIntelligenceGain"] = string.format("%.2f", hero.AttributeIntelligenceGain)
-		
+
 		--攻击力
 		if hero.AttributePrimary == "DOTA_ATTRIBUTE_STRENGTH" then
 			hero.average_damage = (hero.AttackDamageMin+hero.AttackDamageMax)/2+hero.AttributeBaseStrength
@@ -982,7 +982,7 @@ function load_hero_data()
 		hero_data_table[v]["StatusMana"] = tostring(hero.StatusMana + hero.AttributeBaseIntelligence*12)
 		--基础回魔
 		hero_data_table[v]["StatusManaRegen"] = string.format("%.1f",hero.StatusManaRegen + hero.AttributeBaseIntelligence*0.05)
-		
+
 		CustomNetTables:SetTableValue("hero_data_table",v,hero_data_table[v])
 	end
 end
@@ -1021,7 +1021,7 @@ function think_spawn_mini_boss()
 	--5-10分钟
 	if GameRules:GetDOTATime(false,true)>=300 and GameRules:GetDOTATime(false,true)<600 and (_G.boss_difficulty>0 or GetMapName()=="apex") then
 		local random_number = RandomFloat(1,100)
-		--5%概率
+		--5%概率`
 		if random_number>=1 and random_number<=5 then
 			local pos = RandomVector(RandomInt(0,7000))
 			local boss = CreateUnitByName("npc_dota_mini_boss",pos, true, nil, nil, DOTA_TEAM_CUSTOM_6)
@@ -1106,7 +1106,7 @@ function PveGameMode:spawn_boss()
 			boss:AddNewModifier(boss,nil,"modifier_"..boss:GetUnitName(),nil)
 			boss:AddNewModifier(boss,nil,"modifier_vision",nil)
 			boss:AddNewModifier(boss,nil,"modifier_boss_difficulty",nil)
-			
+
 			_G.alive_boss_table[boss:GetEntityIndex()] = 1
 		else
 			--如果没有boss，进第二轮
@@ -1127,7 +1127,7 @@ function PveGameMode:spawn_boss()
 				boss:AddNewModifier(boss,nil,"modifier_"..boss:GetUnitName(),nil)
 				boss:AddNewModifier(boss,nil,"modifier_vision",nil)
 				boss:AddNewModifier(boss,nil,"modifier_boss_difficulty",nil)
-				
+
 				_G.alive_boss_table[boss:GetEntityIndex()] = 1
 			end
 		else
@@ -1200,7 +1200,7 @@ end
 function swap_ability(eventSourceIndex, data)
 	local hero = PlayerResource:GetSelectedHeroEntity(data.PlayerID)
 	hero:SwapAbilities(data.ability1,data.ability2,true,true)
-	
+
 end
 
 --击杀胜利

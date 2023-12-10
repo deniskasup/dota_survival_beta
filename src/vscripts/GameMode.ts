@@ -1,7 +1,10 @@
 import {reloadable} from "./lib/tstl-utils";
-import {heroSelectionTime, maxCreepsCount} from "./constants/gameMode";
-import {findEnemiesInRadius} from "./helpers/findInRadius";
+import {heroSelectionTime} from "./constants/gameMode";
+
 import {arrayShuffle} from "./helpers/arrayShuffle";
+import {getWaveNumberFromTime} from "./helpers/getWaveNumberFromTime";
+import {wavesConfigByWaveNumber} from "./constants/creeps";
+import getRandomInRange from "./helpers/getRandomInRange";
 
 LinkLuaModifier("modifier_spell_autocast", "modifiers/global/modifier_spell_autocast", LuaModifierType.LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_base_settings", "modifiers/global/modifier_base_settings", LuaModifierType.LUA_MODIFIER_MOTION_NONE)
@@ -80,7 +83,7 @@ export class GameMode {
     }
 
     private StartGame(): void {
-        Timers.CreateTimer(5, this.SpawnCreeps)
+        Timers.CreateTimer(5, () => this.SpawnCreeps())
     }
 
     // Called on script_reload
@@ -106,6 +109,9 @@ export class GameMode {
     private SpawnCreeps() {
         const heroes = HeroList.GetAllHeroes()
         const spawnChecker = Entities.FindByName(undefined, 'creeps_count_checker')
+        const waveNumber = getWaveNumberFromTime(GameRules.GetDOTATime(false, true))
+        print(waveNumber)
+        const waveConfig = wavesConfigByWaveNumber[waveNumber]
 
         //TODO: вынести в хелпер
         const aliveCreepsCount = FindUnitsInRadius(
@@ -129,13 +135,12 @@ export class GameMode {
             return [...points, ...pointsInHeroVisionPlus.filter(point => !pointsInHeroVision.includes(point))]
         }, [] as CBaseEntity[])
 
-        arrayShuffle(pointsAvailableForSpawn).slice(0, PlayerResource.GetPlayerCount() * maxCreepsCount - aliveCreepsCount).forEach(point => {
-            const unit = CreateUnitByName('npc_dota_neutral_kobold', point.GetAbsOrigin(), true, undefined, undefined, DOTATeam_t.DOTA_TEAM_BADGUYS)
-            const hero = findEnemiesInRadius(unit, 10000)[0]
+        arrayShuffle(pointsAvailableForSpawn).slice(0, PlayerResource.GetPlayerCount() * waveConfig.unitsCountPerPlayer - aliveCreepsCount).forEach(point => {
+            const unitName = waveConfig.unitNames[getRandomInRange(0, waveConfig.unitNames.length - 1)]
+            const unit = CreateUnitByName(unitName, point.GetAbsOrigin(), true, undefined, undefined, DOTATeam_t.DOTA_TEAM_BADGUYS)
 
-            if(hero) {
-                unit.SetForceAttackTarget(hero)
-            }
+            // радиус агра
+            unit.SetAcquisitionRange(10000)
         })
 
         return 5

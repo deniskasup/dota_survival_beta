@@ -32,7 +32,13 @@ export class modifier_spell_autocast extends BaseModifier {
         caster?.SetContextThink('think_cast', () => {
 
             for(let abilityIndex = 0; abilityIndex < caster.GetAbilityCount(); abilityIndex++) {
+
                 const ability = caster?.GetAbilityByIndex(abilityIndex)
+
+                // TODO: вынести отсюда
+                // if(!noCastSpells.includes(ability!.GetName()) && !ability?.IsActivated()) {
+                    ability?.SetActivated( false)
+                // }
 
                 if(
                     caster.IsAlive()

@@ -1,11 +1,11 @@
-export const findEnemiesInRadius = (finder: CDOTA_BaseNPC, radius = 1500) => {
+export const findEnemiesInRadius = (finder: CDOTA_BaseNPC, radius = 1500, targetType: DOTA_UNIT_TARGET_TYPE = DOTA_UNIT_TARGET_TYPE.DOTA_UNIT_TARGET_CREEP+1) => {
     return FindUnitsInRadius(
         finder!.GetTeamNumber(),
         finder!.GetLocalOrigin(),
         undefined,
         radius,
         DOTA_UNIT_TARGET_TEAM.DOTA_UNIT_TARGET_TEAM_ENEMY,
-        DOTA_UNIT_TARGET_TYPE.DOTA_UNIT_TARGET_CREEP+1, // Проверить, объединение ли это с предыдущим
+        targetType, // Проверить, объединение ли это с предыдущим
         DOTA_UNIT_TARGET_FLAGS.DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
         FindOrder.FIND_CLOSEST,
         false
